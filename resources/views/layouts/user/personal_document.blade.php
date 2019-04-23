@@ -46,7 +46,6 @@
                                <li>
                                     <i class="icon-leftbar fa fa-upload"></i>&nbsp;
                                     Văn bản đi
-                                    <span class="count-new-document">5</span>
                                </li>
                             </a>
                             <a href="{{route('document-pending.index')}}">

@@ -50,6 +50,13 @@
     color:red;
 }
 
+.approved{
+    float: right !important;
+    margin-top: 10px;
+    margin-left: 10px;
+    color:green;
+}
+
 .newDoc{
     border: 1px solid #202124 !important;
 }

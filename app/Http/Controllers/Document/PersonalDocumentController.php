@@ -8,11 +8,13 @@ use App\Models\Department;
 use App\Models\DocumentUser;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PersonalDocumentController extends Controller
 {
     public function index()
     {
+        Carbon::setLocale('vi');
         $documents = DB::table('documents')
             ->join('document_user', 'documents.id', '=', 'document_user.document_id')
             ->join('departments', 'departments.id', '=', 'documents.department_id')
