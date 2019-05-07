@@ -40,6 +40,19 @@ function changePosition(id) {
     }
 }
 
+function departmentRedirect() {
+    window.location.href = '/admin/department';
+}
+function UsersRedirect() {
+    window.location.href = '/admin/department-user';
+}
+function departmentAdminRedirect() {
+    window.location.href = '/admin/department-admin';
+}
+function infrastructureRedirect() {
+    window.location.href = '/admin/infrastructure';
+}
+
 $(document).on('click', '#btnAddUser', function () {
     $.ajax({
         method: "GET",
@@ -77,6 +90,18 @@ $(document).on('click', '#btnAddUser', function () {
         else
         {
             password_confirmation.setCustomValidity("");
+        }
+
+        var sizef = document.getElementById("avatar");
+        var fileUpload = sizef.files;
+        for (var i = 0; i < fileUpload.length; i++){
+            if (fileUpload[i].size/1024/1024 > 10){
+                sizef.setCustomValidity('giới hạn upload file là 10 MB, file: '+fileUpload[i].name+' vượt quá 10mb');
+            }
+            else
+            {
+                sizef.setCustomValidity("");
+            }
         }
     });
 });
@@ -145,14 +170,19 @@ $(document).on("click", "#editInfor", function(){
 });
 
 $(document).on("change", "#picture", function(){
-    $('#changeAvatar').submit();
+    if(this.files[0].size/1024/1024  > 10){
+        alert('giới hạn upload file là 10 MB, file: '+this.files[0].name+' vượt quá 10mb')
+    }
+    else {
+        $('#changeAvatar').submit();
+    }
 });
 //validate form schecule_week
 $(document).on('click', '#btnAddSchedule', function () {
     var date = document.getElementById("start");
     var d = new Date(date.value);
     if( d.getDay() != 1) {
-        date.setCustomValidity('Chỉ chọn được ngày bắt đầu từ thứ 2');
+        date.setCustomValidity('Chỉ chọn được ngày bắt đầu từ thứ 2 của tuần');
             $('start').focus();
     }
     else
@@ -160,3 +190,60 @@ $(document).on('click', '#btnAddSchedule', function () {
         date.setCustomValidity("");
     }
 });
+//validate file upload timetable
+$(document).on('click', '#btnTimeTable', function () {
+    var sizef = document.getElementById("file_attachment");
+    var fileUpload = sizef.files;
+    for (var i = 0; i < fileUpload.length; i++){
+        if (fileUpload[i].size/1024/1024 > 10){
+            sizef.setCustomValidity('giới hạn upload file là 10 MB, file: '+fileUpload[i].name+' vượt quá 10mb');
+        }
+        else
+        {
+            sizef.setCustomValidity("");
+        }
+    }
+});
+//validate file upload form
+$(document).on('click', '#btnForm', function () {
+    var sizef = document.getElementById("link");
+    var fileUpload = sizef.files;
+    for (var i = 0; i < fileUpload.length; i++){
+        if (fileUpload[i].size/1024/1024 > 10){
+            sizef.setCustomValidity('giới hạn upload file là 10 MB, file: '+fileUpload[i].name+' vượt quá 10mb');
+        }
+        else
+        {
+            sizef.setCustomValidity("");
+        }
+    }
+});
+//validate file upload reply document
+$(document).on('click', '#replyDocument', function () {
+    var sizef = document.getElementById("file_attachment_reply");
+    var fileUpload = sizef.files;
+    for (var i = 0; i < fileUpload.length; i++){
+        if (fileUpload[i].size/1024/1024 > 10){
+            sizef.setCustomValidity('giới hạn upload file là 10 MB, file: '+fileUpload[i].name+' vượt quá 10mb');
+        }
+        else
+        {
+            sizef.setCustomValidity("");
+        }
+    }
+});
+//validate file upload infrastructure
+$(document).on('click', '#btnInfrastructure', function () {
+    var sizef = document.getElementById("avatar");
+    var fileUpload = sizef.files;
+    for (var i = 0; i < fileUpload.length; i++){
+        if (fileUpload[i].size/1024/1024 > 10){
+            sizef.setCustomValidity('giới hạn upload file là 10 MB, file: '+fileUpload[i].name+' vượt quá 10mb');
+        }
+        else
+        {
+            sizef.setCustomValidity("");
+        }
+    }
+});
+

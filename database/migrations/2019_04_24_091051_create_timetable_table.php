@@ -17,7 +17,7 @@ class CreateTimetableTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('file_attachment')->nullable();
+            $table->text('file_attachment')->nullable();
             $table->integer('user_id');
             $table->integer('department_id');
             $table->integer('is_active')->default(1);

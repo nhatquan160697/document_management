@@ -32,7 +32,7 @@
                                         {!! Form::text('description', '', ['class' => 'form-control', 'placeholder' => "Nhập Mô Tả", 'id' => 'description', 'required' => 'required']) !!}
                                     </div>
                                 </div>
-                                {!! Form::submit("Thêm", ['class' => 'btn btn-primary mt-4 pr-4 pl-4', 'id' => 'btnAddForm']) !!}
+                                {!! Form::submit("Thêm", ['class' => 'btn btn-primary mt-4 pr-4 pl-4', 'id' => 'btnForm']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>

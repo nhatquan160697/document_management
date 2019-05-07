@@ -20,7 +20,7 @@ class ScheduleWeekController extends Controller
         try
         {
             $schedule = ScheduleWeek::where('is_active', config('setting.active.is_active'))
-                ->where(DB::raw('DATEDIFF(CURRENT_DATE(), scheduleweek.start)'),'<=','6')
+                ->where('id',$id)
                 ->first();
             if(isset($schedule->content)){
                 $timeTable = json_decode($schedule->content);
@@ -51,7 +51,8 @@ class ScheduleWeekController extends Controller
 
     public function indexNoLogin(){
         $schedule = ScheduleWeek::where('is_active', config('setting.active.is_active'))
-            ->where(DB::raw('DATEDIFF(CURRENT_DATE(), scheduleweek.start)'),'<=','6')
+            ->where(DB::raw('DATEDIFF(scheduleweek.end,CURRENT_DATE())'),'<=','6')
+            ->where(DB::raw('DATEDIFF(scheduleweek.end,CURRENT_DATE())'),'>','0')
             ->first();
         if(isset($schedule->content)){
             $timeTable = json_decode($schedule->content);

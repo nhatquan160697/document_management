@@ -9,7 +9,6 @@
                 <div class="card-header py-3" style="margin-bottom: 5px;">
                     <h6 class="m-0 font-weight-bold text-primary">{{ $schedule->title }}</h6>
                 </div>
-                @include('common.errors')
                 <table class="table table-striped table-bordered" style="width:100%">
                     <tr style="background-color: #1b4b72;color:white;">
                         <th width="13%">Thứ, ngày</th>

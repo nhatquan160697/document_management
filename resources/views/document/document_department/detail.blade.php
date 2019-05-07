@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="reply-foot">
-                            {!! Form::submit("Gửi", ['class' => 'btn btn-primary btchinh']) !!}
+                            {!! Form::submit("Gửi", ['class' => 'btn btn-primary btchinh', 'id' => 'replyDocument']) !!}
                             <div class="reply-attach-file">
                                 <label for="file-input">
                                     <i class="fa fa-paperclip" ></i>

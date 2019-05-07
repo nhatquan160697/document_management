@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\SystemAdmin;
+namespace App\Http\Controllers\DepartmentAdmin;
 
 use App\Http\Requests\SystemAdmin\ScheduleWeekRequest;
 use App\Models\ScheduleWeek;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class ScheduleWeekController extends Controller
+class ScheduleManagementController extends Controller
 {
     public function index(){
         $schedule = ScheduleWeek::where('is_active', config('setting.active.is_active'))->get();
 
-        return view('system_admin.schedule_week.index', compact('schedule'));
+        return view('department_admin.schedule_week.index', compact('schedule'));
     }
 
     public function create(){
-        return view('system_admin.schedule_week.add');
+        return view('department_admin.schedule_week.add');
 
     }
 
@@ -58,7 +57,7 @@ class ScheduleWeekController extends Controller
                 ->first();
             $timeTable = json_decode($schedule->content);
 
-            return view('system_admin.schedule_week.edit', compact('schedule', 'timeTable'));
+            return view('department_admin.schedule_week.edit', compact('schedule', 'timeTable'));
         }
         catch (Exception $exception)
         {
@@ -95,7 +94,7 @@ class ScheduleWeekController extends Controller
     public function archive(){
         $schedule = ScheduleWeek::where('is_active',config('setting.active.no_active'))->get();
 
-        return view('system_admin.schedule_week.archive', compact( 'schedule'));
+        return view('department_admin.schedule_week.archive', compact( 'schedule'));
     }
 
     public function restore($id){

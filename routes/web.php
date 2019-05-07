@@ -68,6 +68,18 @@ Route::group(['middleware' => 'checkUser'], function () {
 
     Route::namespace ('DepartmentAdmin')->group(function () {
 
+        //schedule
+        Route::resource('schedule-admin', 'ScheduleManagementController');
+        Route::get('/schedule-archived', [
+            'as' => 'schedule-archived',
+            'uses' => 'ScheduleManagementController@archive',
+        ]);
+
+        Route::put('/schedule-restore/{id}', [
+            'as' => 'schedule-restore',
+            'uses' => 'ScheduleManagementController@restore',
+        ]);
+
         Route::resource('delegacy', 'DelegacyController');
         //TimeTable
         Route::resource('timetable', 'TimeTableController');
@@ -169,7 +181,7 @@ Route::group(['middleware' => 'checkUser'], function () {
     });
 
     Route::namespace ('Document')->group(function () {
-        
+
         Route::resource('document', 'DocumentController');
         Route::resource('document-department', 'DocumentDepartmentController');
         Route::resource('document-personal', 'PersonalDocumentController');
@@ -210,17 +222,6 @@ Route::group(['middleware' => 'checkSysAdmin'], function () {
 
         Route::namespace ('SystemAdmin')->group(function () {
 
-            //schedule
-            Route::resource('schedule-admin', 'ScheduleWeekController');
-            Route::get('/schedule-archived', [
-                'as' => 'schedule-archived',
-                'uses' => 'ScheduleWeekController@archive',
-            ]);
-
-            Route::put('/schedule-restore/{id}', [
-                'as' => 'schedule-restore',
-                'uses' => 'ScheduleWeekController@restore',
-            ]);
             //department
             Route::resource('department', 'DepartmentController');
 

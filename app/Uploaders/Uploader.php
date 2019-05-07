@@ -25,9 +25,11 @@ class Uploader
         if (isset($fileAttach)) {
             foreach($fileAttach as $file)
             {
+                $strDefault = config('setting.str_default');
+                $tokenName = substr(str_shuffle($strDefault), 0, 16);
                 $fileName = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                 $fileExtension = $file->getClientOriginalExtension();
-                $newName = $fileName.'-'.time().'.'.$fileExtension;
+                $newName = $fileName.'-'.time().'-'.$tokenName.'.'.$fileExtension;
                 $path = public_path($path);
                 $file->move($path, $newName);
                 $data[] = $newName;

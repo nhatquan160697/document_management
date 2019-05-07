@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 {!! Form::select('department_id', $department, $infrastructure->department_id, ['class' => 'form-control']) !!}
-                                {!! Form::submit("Sửa", ['class' => 'btn btn-primary mt-4 pr-4 pl-4']) !!}
+                                {!! Form::submit("Sửa", ['class' => 'btn btn-primary mt-4 pr-4 pl-4', 'id' => 'btnInfrastructure']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>

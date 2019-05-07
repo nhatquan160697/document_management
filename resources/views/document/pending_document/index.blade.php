@@ -11,7 +11,7 @@ Văn bản đang chờ duyệt
                 <div class="all-document list-group">
                     @foreach($documents as $document)
                     <div class="list-group-item ">
-                        <a href="#" title = "{{$document->content}}" >
+                        <a href="{{ route('document-pending.show',$document->document_department_id) }}" title = "{{$document->content}}" >
                         <span class="name" style="max-width: 135px !important;color: black;">{{$document->document_number}}</span>
                             <span class="float-left" style="width: 60%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;text-align: left !important;">
                                 <span class="" style="color: black;">{{$document->title}}</span><br/>

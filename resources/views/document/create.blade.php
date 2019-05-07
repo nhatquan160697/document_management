@@ -24,6 +24,10 @@ Tạo mới văn bản
                     {!! Form::label("title", "Tiêu đề", []) !!}
                     {!! Form::text("title", old("title"), ["class"=>"form-control"]) !!}
                 </div>
+                <div class="form-group" style="width: 45%;float:left">
+                    {!! Form::label("is_emergency", "Văn bản khẩn?", []) !!}
+                    {!! Form::checkbox("is_emergency", old("is_emergency"), ["class"=>"form-control"]) !!}
+                </div>
                 <div class="form-group">
                     {!! Form::label("content", "Trích yếu nội dung", []) !!}
                     {!! Form::textarea("content", old("content"), ["class"=>"form-control", "id"=>"content", "rows"=>"3", "placeholder"=>"Nhập trích yếu nội dung..."]) !!}
@@ -50,7 +54,9 @@ Tạo mới văn bản
                     {!! Form::select("departments", [], old("departments"), ["id"=>"multiselect_to", "class"=>"form-control", "size"=>"8", "multiple"=>"multiple"]) !!}
                 </div>
                 <div class="clear"></div><br>
-                {!! Form::submit("Submit", ["class"=>"btn btn-primary"]) !!}
+                <div class="form-group row">
+                    {!! Form::submit("Gửi", ["class"=>"btn btn-primary"]) !!}
+                </div>
             {!! Form::close() !!}
         </div>
     </div>

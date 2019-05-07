@@ -87,21 +87,6 @@
         </div>
     </li>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lichtuan" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-calendar"></i>
-            <span>Lịch tuần</span>
-        </a>
-        <div id="lichtuan" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('schedule-admin.index') }}">Danh sách lịch tuần</a>
-                <a class="collapse-item" href="{{ route('schedule-admin.create') }}">Thêm lịch tuần</a>
-                <a class="collapse-item" href="{{ route('schedule-archived') }}">Lịch tuần đã xóa</a>
-            </div>
-        </div>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->

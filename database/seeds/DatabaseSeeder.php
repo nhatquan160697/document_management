@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentUserSeeder::class);
         $this->call(DocumentDepartmentSeeder::class);
         $this->call(MessageSeeder::class);
+        $this->call(DocumentAttachmentSeeder::class);
     }
 }

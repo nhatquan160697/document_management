@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Infrastructure;
 use App\Models\Department;
-use App\Uploaders\uploader;
+use App\Uploaders\Uploader;
 use App\Http\Requests\SystemAdmin\InfrastructureRequest;
 use File;
 

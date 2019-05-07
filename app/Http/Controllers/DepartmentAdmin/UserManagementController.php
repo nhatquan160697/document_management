@@ -154,7 +154,7 @@ class UserManagementController extends Controller
     }
 
     public function ajaxEmail(){
-        $user = User::where('is_active',config('setting.active.is_active'))->where('status',config('setting.lock.no_lock'))->get();
+        $user = User::where('is_active',config('setting.active.is_active'))->get();
         return response()->json($user);
     }
     /**

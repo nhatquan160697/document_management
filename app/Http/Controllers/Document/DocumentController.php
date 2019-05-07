@@ -121,7 +121,7 @@ class DocumentController extends Controller
     {
         DB::beginTransaction();
         try {
-            $documentData = $request->except('departments', 'attachedFiles', 'search', '_token');
+            $documentData = $request->except('departments', 'attachedFiles', 'search', '_token', 'is_emergency');
             $documentData['user_id'] = Auth::user()->id;
             $departments = $request->only('departments');
             $attachedFiles = $request->only('attachedFiles');
@@ -132,6 +132,7 @@ class DocumentController extends Controller
                     'department_id' => $department,
                     'sending_date' => Carbon::now(),
                     'is_approved' => config('setting.document.pending'),
+                    'is_emergency' => $request->only('is_emergency'),
                 ]);
             }
             foreach ($attachedFiles["attachedFiles"] as $key => $file) {

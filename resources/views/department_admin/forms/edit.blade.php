@@ -46,7 +46,7 @@
                                         {!! Form::text('description', $forms->description, ['class' => 'form-control', 'placeholder' => "Nhập Mô Tả", 'id' => 'description', 'required' => 'required']) !!}
                                     </div>
                                 </div>
-                                {!! Form::submit("Sửa", ['class' => 'btn btn-primary mt-4 pr-4 pl-4']) !!}
+                                {!! Form::submit("Sửa", ['class' => 'btn btn-primary mt-4 pr-4 pl-4', 'id' => 'btnForm']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </div>
