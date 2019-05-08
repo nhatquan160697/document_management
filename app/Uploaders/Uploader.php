@@ -4,7 +4,7 @@ namespace App\Uploaders;
 
 class Uploader
 {
-    public function saveDocument($documentFile)
+    public function saveDocument($documentFile, $path)
     {
         if (isset($documentFile)) {
             $strDefault = config('setting.str_default');
@@ -13,7 +13,6 @@ class Uploader
             $fileExtension = $documentFile->getClientOriginalExtension();
             $nameFile = explode('.',$documentFile->getClientOriginalName());
             $newName = time() .'-'. $nameFile[0] . '.' . $fileExtension;
-            $path = public_path('files/file_attachment');
             $documentFile = $newName;
             $file->move($path, $newName);
             return $newName;

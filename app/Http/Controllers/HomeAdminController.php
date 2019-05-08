@@ -15,7 +15,6 @@ class HomeAdminController extends Controller
     {   $sumOfDepartments = Department::where('is_active',config('setting.active.is_active'))->get()->count();
         $sumOfUsers = User::where('is_active',config('setting.active.is_active'))->get()->count();
         $sumOfAdminDepartments = User::where(['is_active' => config('setting.active.is_active'), 'role' => 2])->get()->count();
-        $sumOfInfrastructures = Infrastructure::where('is_active',config('setting.active.is_active'))->get()->count();
         $schedule = ScheduleWeek::where('is_active', config('setting.active.is_active'))
             ->where(DB::raw('DATEDIFF(scheduleweek.end,CURRENT_DATE())'),'<=','6')
             ->where(DB::raw('DATEDIFF(scheduleweek.end,CURRENT_DATE())'),'>','0')

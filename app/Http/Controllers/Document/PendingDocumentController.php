@@ -52,7 +52,7 @@ class PendingDocumentController extends Controller
 
             if ($result) {
 
-                return redirect(route('document-pending.index'))->with('alert', 'Duyệt thành công');
+                return redirect(route('document-sent.index'))->with('alert', 'Duyệt thành công');
             } else {
 
                 return redirect(route('document-pending.index'))->with('alert', 'Duyệt thất bại');

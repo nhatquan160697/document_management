@@ -138,12 +138,12 @@ class DocumentController extends Controller
             foreach ($attachedFiles["attachedFiles"] as $key => $file) {
                 DocumentAttachment::create([
                     'document_id' => $documentId,
-                    'name' => $this->uploader->saveDocument($file),
+                    'name' => $this->uploader->saveDocument($file,public_path('upload/files/document')),
                 ]);
             }
             DB::commit();
 
-            return redirect(route('document.create'))->with('alert', 'Công văn đã được đưa vào danh sách phê duyệt');
+            return redirect(route('document-sent.index'))->with('alert', 'Công văn đã được đưa vào danh sách phê duyệt');
         } catch (Exception $e) {
             DB::rollBack();
 

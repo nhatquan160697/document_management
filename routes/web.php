@@ -67,6 +67,28 @@ Route::group(['middleware' => 'checkUser'], function () {
     Route::resource('users-forms', 'FormsController');
 
     Route::namespace ('DepartmentAdmin')->group(function () {
+        //infrastructure
+        Route::resource('infrastructure', 'InfrastructureManagementController');
+
+        Route::get('/infrastructure-archive', [
+            'uses' => 'InfrastructureManagementController@archiveIndex',
+            'as' => 'infrastructure.archive',
+        ]);
+        Route::put('/infrastructure-archive-restore/{id}', [
+            'uses' => 'InfrastructureManagementController@restore',
+            'as' => 'infrastructure.archive.restore',
+        ]);
+        //schedule
+        Route::resource('schedule-admin', 'ScheduleManagementController');
+        Route::get('/schedule-archived', [
+            'as' => 'schedule-archived',
+            'uses' => 'ScheduleManagementController@archive',
+        ]);
+
+        Route::put('/schedule-restore/{id}', [
+            'as' => 'schedule-restore',
+            'uses' => 'ScheduleManagementController@restore',
+        ]);
 
         //schedule
         Route::resource('schedule-admin', 'ScheduleManagementController');
@@ -274,23 +296,6 @@ Route::group(['middleware' => 'checkSysAdmin'], function () {
             Route::put('/document-type-restore/{id}', [
                 'as' => 'document-type-restore',
                 'uses' => 'DocumentTypeController@restore',
-            ]);
-
-            //infrastructure
-            Route::post('/infrastructure-department/{id}', [
-                'uses' => 'InfrastructureManagementController@changeDepartment',
-                'as' => 'infrastructure.department',
-            ]);
-
-            Route::resource('infrastructure', 'InfrastructureManagementController');
-
-            Route::get('/infrastructure-archive', [
-                'uses' => 'InfrastructureManagementController@archiveIndex',
-                'as' => 'infrastructure.archive',
-            ]);
-            Route::put('/infrastructure-archive-restore/{id}', [
-                'uses' => 'InfrastructureManagementController@restore',
-                'as' => 'infrastructure.archive.restore',
             ]);
         });
     });

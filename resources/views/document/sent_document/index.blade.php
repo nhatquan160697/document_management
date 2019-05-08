@@ -3,6 +3,7 @@
 Văn bản đi
 @endsection
 @section('content')
+@include("common.errors")
  <div class="container">
     <div id="cards-wrapper" class="cards-wrapper row">
         <div class="list-document-detail">

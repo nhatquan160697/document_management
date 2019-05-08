@@ -86,7 +86,7 @@
                                 <a href="{{route('document-sent.index')}}">
                                     <li>
                                         <i class="icon-leftbar fa fa-upload"></i>&nbsp;
-                                        Văn bản đi
+                                        Văn bản đã gửi
                                     </li>
                                 </a>
                                 <a href="{{route('document-pending.index')}}">
@@ -117,6 +117,14 @@
                                                 {{$personalUnSeenDocumentsQuantity}}
                                             </span>
                                         @endif
+                                    </li>
+                                </a>
+                            @endif
+                            @if(auth()->user()->role == config('setting.roles.user') && auth()->user()->delegacy == config('setting.delegacy.department_admin'))
+                                <a href="{{route('document-department.index')}}">
+                                    <li>
+                                        <i class="icon-leftbar fa fa-download"></i>&nbsp;
+                                        Văn bản đến đơn vị
                                     </li>
                                 </a>
                             @endif
