@@ -2,6 +2,7 @@
 @section('title')
 Văn bản đến cá nhân
 @endsection
+@include("common.errors")
 @section('content')
  <div class="container">
     <div id="cards-wrapper" class="cards-wrapper row">
@@ -16,11 +17,11 @@ Văn bản đến cá nhân
                             $arrId = json_decode($id->array_user_seen);
                             $checkNew = false;
                             if(isset($arrId)){
-                            foreach($arrId as $arr){
-                                if(Auth::user()->id == $arr){
-                                    $checkNew = true;
+                                foreach($arrId as $arr){
+                                    if(Auth::user()->id == $arr){
+                                        $checkNew = true;
+                                    }
                                 }
-                            }
                             }
                         @endphp
                         <div class="list-group-item {{ ($checkNew == true)? '':'newDoc'}} @if(isset($id_reply->user_id)) {{($id_reply->user_id == Auth::user()->id)?'replied':''}}@endif" >

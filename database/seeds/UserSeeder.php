@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'Vu Phan',
             'birth_date' => '1997/03/28',
             'gender' => 1,
+            'role' => 2,
             'address' => '08 Ha Van Tinh, Da Nang',
             'phone' => '0354525110',
             'avatar' => 'user-default.png'

@@ -210,6 +210,10 @@ Route::group(['middleware' => 'checkIsNotSysAdmin'], function () {
             ]);
             //dep-admin
             Route::resource('document-sent', 'SentDocumentController');
+            //văn bản các nhân
+            Route::resource('document-personal', 'PersonalDocumentController', [
+                'only' => ['store', 'create']
+            ]);
         });
 
         Route::namespace ('DepartmentAdmin')->group(function () {
@@ -284,7 +288,9 @@ Route::group(['middleware' => 'checkIsNotSysAdmin'], function () {
 
         Route::namespace ('Document')->group(function () {
             //user
-            Route::resource('document-personal', 'PersonalDocumentController');
+            Route::resource('document-personal', 'PersonalDocumentController', [
+                'only' => ['index', 'show']
+            ]);
             Route::post('/document-personal/{id}', [
                 'as' => 'reply.document-personal',
                 'uses' => 'PersonalDocumentController@reply',

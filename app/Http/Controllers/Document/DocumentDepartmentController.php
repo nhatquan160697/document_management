@@ -107,9 +107,9 @@ class DocumentDepartmentController extends Controller
         $countDocumentExists = DocumentUser::where(['document_id' => $id, 'user_id' => null])->get()->count();
         if ($countDocumentExists < 1) {
             try {
-                $departmentID           = DepartmentUser::where('user_id',
+                $departmentID = DepartmentUser::where('user_id',
                     Auth::user()->id)->first();
-                $input['document_id']   = $id;
+                $input['document_id'] = $id;
                 $input['department_id'] = $departmentID->department_id;
                 DocumentUser::create($input);
 

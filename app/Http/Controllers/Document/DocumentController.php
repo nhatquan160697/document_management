@@ -30,25 +30,25 @@ class DocumentController extends Controller
 
     public function create()
     {
-        $departments = DB::table('users')
-            ->select('departments.id', 'departments.name')
-            ->join('department_users', 'users.id', '=', 'department_users.user_id')
-            ->join('departments', 'department_users.department_id', '=', 'departments.id')
-            ->where('users.id', Auth::user()->id)
-            ->pluck('name', 'id');
+        $departmentId = DepartmentUser::where('user_id', Auth::user()->id)->first()['department_id'];
         $documentTypes = DocumentType::pluck('name', 'id');
-        $first_key = key($departments->toArray());
-        $receivedDepartments = Department::where('id', '!=', $first_key)->pluck('name', 'id');
-        return view('document.create', compact('departments', 'documentTypes', 'receivedDepartments'));
+        $receivedDepartments = Department::where('id', '!=', $departmentId)->pluck('name', 'id');
+        return view('document.create', compact('documentTypes', 'receivedDepartments'));
     }
 
     public function store(DocumentAddRequest $request)
     {
         DB::beginTransaction();
         try {
+            $departmentId = DepartmentUser::where('user_id', Auth::user()->id)->first()['department_id'];
             $documentData = $request->except('departments', 'attachedFiles', 'search', '_token');
             $documentData['user_id'] = Auth::user()->id;
-            $documentData['is_approved'] = config('setting.document.pending');
+            if(Auth::user()->role == config('setting.roles.admin_department'))
+                $documentData['is_approved'] = config('setting.document.approved');
+            elseif(Auth::user()->delegacy == config('setting.delegacy.department_admin'))
+                $documentData['is_approved'] = config('setting.document.pending');
+            $documentData['department_id'] = $departmentId;
+            $documentData['publish_date'] = Carbon::parse($documentData['publish_date'])->format('Y-m-d');
             $departments = $request->only('departments');
             $attachedFiles = $request->only('attachedFiles');
             $documentId = Document::insertGetId($documentData);
@@ -67,7 +67,10 @@ class DocumentController extends Controller
             }
             DB::commit();
 
-            return redirect(route('document-sent.index'))->with('messageSuccess', 'Công văn đã được đưa vào danh sách phê duyệt');
+            if(Auth::user()->role == config('setting.roles.admin_department'))
+                return redirect(route('document-sent.index'))->with('messageSuccess', 'Gửi công văn thành công');
+            elseif(Auth::user()->delegacy == config('setting.delegacy.department_admin'))
+                return redirect(route('document-sent.index'))->with('messageSuccess', 'Công văn đã được đưa vào danh sách phê duyệt');
         } catch (Exception $e) {
             DB::rollBack();
 
