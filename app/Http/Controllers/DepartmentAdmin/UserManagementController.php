@@ -28,15 +28,12 @@ class UserManagementController extends Controller
 
     public function index()
     {
-        $departmentID = DepartmentUser::where('user_id', Auth::user()->id)->first();
-        $departmentUser = DB::table('users')
-            ->join('department_users', 'department_users.user_id', '=', 'users.id')
-            ->where('users.is_active',config('setting.active.is_active'))
-            ->where('users.role',config('setting.position.secretary'))
-            ->where('department_users.position_id',config('setting.position.secretary'))
-            ->where('department_users.department_id', $departmentID['department_id'])
+        $departmentID = DepartmentUser::where('user_id', Auth::user()->id)->first()->department_id;
+        $departmentUser = User::join('department_users', 'department_users.user_id', '=', 'users.id')
+            ->join('positions', 'positions.id', 'department_users.position_id')
+            ->where(['department_users.department_id' => $departmentID, 'users.is_active' => config('setting.active.is_active')])
+            ->select('users.*', 'department_users.*', 'positions.name as position_name')
             ->get();
-
         return view('department_admin.users.index', compact('departmentUser'));
     }
 
@@ -111,7 +108,9 @@ class UserManagementController extends Controller
      */
 
     public function archiveIndex(){
-        $departmentUser = User::with('departmentUser')->where('is_active',config('setting.active.no_active'))->get();
+        $departmentID = DepartmentUser::where('user_id',Auth::user()->id)->first()->department_id;
+        $departmentUser = User::join('department_users','users.id' ,'=' , 'department_users.user_id')
+            ->where(['users.is_active' => config('setting.active.no_active'),  'department_users.department_id' => $departmentID])->get();
 
         return view('department_admin.users.archive', compact( 'position', 'department', 'departmentUser'));
     }
@@ -184,6 +183,8 @@ class UserManagementController extends Controller
                 DepartmentUser::where('user_id', $id)->update(['start_date' => Carbon::now(),'end_date' => $input['end_date']]);
             }
             else {
+                $dataOfUser = User::where('id', Auth::user()->id)->first()->avatar;
+                $this->uploader->checkOldImg($dataOfUser,false,'/upload/images');
                 $input['avatar'] = $this->uploader->saveImg($input['avatar']);
                 User::find($id)->update($input);
                 DepartmentUser::where('user_id', $id)->update(['start_date' => Carbon::now(),'end_date' => $input['end_date']]);
@@ -212,7 +213,6 @@ class UserManagementController extends Controller
         {
             $user = User::findOrFail($id);
             $user->update(['is_active' => config('setting.active.no_active')]);
-            DepartmentUser::where('user_id', $id)->update(['is_active' => config('setting.active.no_active')]);
             DB::commit();
 
             return redirect()->route('users.index')->with('messageSuccess', 'Xóa Thành Công');
@@ -231,6 +231,7 @@ class UserManagementController extends Controller
         {
             DepartmentUser::where('user_id', $id)->delete();
             $user = User::findOrFail($id);
+            $this->uploader->checkOldImg($user->avatar,false,'/upload/images');
             $user->delete();
             DB::commit();
 

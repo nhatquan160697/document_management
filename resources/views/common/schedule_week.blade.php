@@ -18,67 +18,128 @@
     </a>
 </div>
 @if(isset($schedule))
-<div style="text-align: center;margin-bottom: 2%">
-    <h4>LỊCH CÔNG TÁC</h4>
-    <span>{{ $schedule->title }}</span>
-</div>
-<div class="schedule-show">
-    <table class="table table-striped table-bordered" style="width:100%">
-        <tr >
-            <th width="10%">Thứ, ngày</th>
-            <th width="30%">Sáng</th>
-            <th width="30%">Chiều</th>
-            <th width="30%">Tối</th>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 2 <br /> {{ date('d-m-Y', strtotime($schedule->start)) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu2S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu2C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu2T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 3 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +1 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu3S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu3C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu3T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 4 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +2 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu4S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu4C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu4T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 5 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +3 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu5S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu5C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu5T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 6 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +4 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu6S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu6C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu6T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Thứ 7 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +5 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu7S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu7C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu7T }}</td>
-        </tr>
-        <tr>
-            <td width="10%" class="style-col-schedule">Chủ nhật <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +6 day')) }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu8S }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu8C }}</td>
-            <td width="30%" class="style-col-content">{{ $timeTable->thu8T }}</td>
-        </tr>
-    </table>
-    @if(isset($schedule->note))
-        <p style="font-weight: bold;color: red">
-            Lưu ý : {{ $schedule->note }}
-        </p>
-    @endif
-</div>
+    <div style="text-align: center;margin-bottom: 2%">
+        <h4>LỊCH CÔNG TÁC</h4>
+        <span>{{ $schedule->title }}</span>
+    </div>
+    <div class="schedule-show">
+        <table class="table table-striped table-bordered" style="width:100%">
+            <tr >
+                <th width="10%">Thứ, ngày</th>
+                <th width="30%">Sáng</th>
+                <th width="30%">Chiều</th>
+                <th width="30%">Tối</th>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 2 <br /> {{ date('d-m-Y', strtotime($schedule->start)) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu2S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu2C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu2T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 3 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +1 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu3S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu3C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu3T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 4 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +2 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu4S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu4C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu4T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 5 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +3 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu5S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu5C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu5T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 6 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +4 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu6S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu6C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu6T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Thứ 7 <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +5 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu7S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu7C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu7T }}</td>
+            </tr>
+            <tr>
+                <td width="10%" class="style-col-schedule">Chủ nhật <br /> {{ date('d-m-Y', strtotime($schedule->start . ' +6 day')) }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu8S }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu8C }}</td>
+                <td width="30%" class="style-col-content">{{ $timeTable->thu8T }}</td>
+            </tr>
+        </table>
+        @if(isset($schedule->note))
+            <p style="font-weight: bold;color: red">
+                Lưu ý : {{ $schedule->note }}
+            </p>
+        @endif
+    </div>
+@else
+    <div style="text-align: center;margin-bottom: 2%">
+        <h4>LỊCH CÔNG TÁC</h4>
+        <span>Hiện tại ,Tuần này không có thời khóa biểu.</span>
+    </div>
+    <div class="schedule-show">
+        <div class="schedule-show">
+            @php
+                $getMondayThisWeek = date('d-m-Y', strtotime('last monday', strtotime('next monday')));
+            @endphp
+            <table class="table table-striped table-bordered" style="width:100%">
+                <tr >
+                    <th width="10%">Thứ, ngày</th>
+                    <th width="30%">Sáng</th>
+                    <th width="30%">Chiều</th>
+                    <th width="30%">Tối</th>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 2 <br />{{ $getMondayThisWeek }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 3 <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +1 day')) }} </td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 4 <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +2 day')) }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 5 <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +3 day')) }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 6 <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +4 day')) }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Thứ 7 <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +5 day')) }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+                <tr>
+                    <td width="10%" class="style-col-schedule">Chủ nhật <br />{{ date('d-m-Y', strtotime($getMondayThisWeek . ' +6 day')) }}</td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                    <td width="30%" class="style-col-content"></td>
+                </tr>
+            </table>
+    </div>
 @endif
 {{ Html::style(asset('/templates/user/css/font-awesome.min.css')) }}
 {{ Html::style(asset('/templates/user/css/bootstrap.min.css')) }}

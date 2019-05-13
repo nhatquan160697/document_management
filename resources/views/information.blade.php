@@ -11,14 +11,10 @@
                     <div class="left-profile">
                         {!! Form::open(['method'=>'POST', 'route'=>['update.avatar'], 'id' => 'changeAvatar', 'files' => true]) !!}
                         <div class="profile-img" id="avatar">
-                            @if(!isset(Auth::user()->avatar))
-                                <img src="http://placehold.it/380x500" style="width: 150px" alt="" class="img-rounded img-responsive" />
+                            @if(Auth::user()->avatar == 'user-default.png')
+                                <a href="/templates/user/images/{{Auth::user()->avatar}}"><img src="/templates/user/images/{{Auth::user()->avatar}}" style="width: 150px;height: 200px;" alt="" class="img-rounded img-responsive" /></a>
                             @else
-                                @if(Auth::user()->avatar == 'user-default.png')
-                                    <a href="/templates/user/images/{{Auth::user()->avatar}}"><img src="/upload/images/{{Auth::user()->avatar}}" style="width: 150px;height: 200px;" alt="" class="img-rounded img-responsive" /></a>
-                                @else
-                                    <a href="/upload/images/{{Auth::user()->avatar}}"><img src="/upload/images/{{Auth::user()->avatar}}" style="width: 150px;height: 200px;" alt="" class="img-rounded img-responsive" /></a>
-                                @endif
+                                <a href="/upload/images/{{Auth::user()->avatar}}"><img src="/upload/images/{{Auth::user()->avatar}}" style="width: 150px;height: 200px;" alt="" class="img-rounded img-responsive" /></a>
                             @endif
                             <div class="file btn btn-lg btn-primary">Thay Đổi
                                 {!! Form::file('avatar',['id' => 'picture']) !!}

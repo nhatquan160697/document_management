@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\DepartmentAdmin;
 
+use App\Http\Requests\DepartmentAdmin\TimetableRequest;
 use App\Models\DepartmentUser;
 use App\Models\TimeTable;
 use App\Uploaders\Uploader;
@@ -42,7 +43,7 @@ class TimeTableController extends Controller
         return view('department_admin.timetable.add');
     }
 
-    public function store(Request $request)
+    public function store(TimetableRequest $request)
     {
         $input = $request->all();
         DB::beginTransaction();
@@ -91,7 +92,7 @@ class TimeTableController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(TimetableRequest $request, $id)
     {
         $input = $request->all();
         DB::beginTransaction();
@@ -102,6 +103,8 @@ class TimeTableController extends Controller
             }
             else {
                 $path = 'upload/files/schedule';
+                $dataOfTimetable = TimeTable::find($id)->file_attachment;
+                $this->uploader->checkOldImg($dataOfTimetable,true, $path);
                 $arrFiles = $this->uploader->saveFileAttach($input['file_attachment'],$path);
                 $input['file_attachment'] = json_encode($arrFiles);
                 TimeTable::find($id)->update($input);

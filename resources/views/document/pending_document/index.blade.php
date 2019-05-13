@@ -10,6 +10,11 @@ Văn bản đang chờ duyệt
                 <h4 class="h4-first">Văn bản đang chờ duyệt</h4>
                 @include('layouts.user.search', ['currentPage'=>'pendingDocument'])
                 <div class="all-document list-group" style="position: relative">
+                    @if($documents->count() == 0)
+                        <div class="list-group-item">
+                            <span>Không có văn bản nào đang chờ duyệt.</span>
+                        </div>
+                    @endif
                     @foreach($documents as $document)
                     <div class="list-group-item" style="width: 95%;" onclick="showDocumentPending('{{$document->id}}')">
                         <a href="{{ route('document-pending.show',$document->id) }}" title = "{{$document->content}}" >

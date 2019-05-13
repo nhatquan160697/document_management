@@ -7,9 +7,10 @@
         <div id="cards-wrapper" class="cards-wrapper row detail-document-body">
             <div style="margin: 10px;width: 100%;;text-align: left">
                 <div class="detail-head">
-                    <h4 style="color:black">{{ $form->name }}</h4>
+                    <h4 style="color:black;display: inline-block;">{{ $form->name }}</h4>
+                    <div style="float: right"><span>Ngày ban hành: {{ date('d-m-Y', strtotime($form->sent_date)) }}</span></div>
                     <br>
-                    <div class="content-document">
+                    <div class="content-document" style="margin-top: 15px;">
                         <p>{{ $form->description }}</p>
                     </div><br><div class="line"></div>
                     <div >

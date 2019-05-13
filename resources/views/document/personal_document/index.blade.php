@@ -11,6 +11,11 @@ Văn bản đến cá nhân
                 @include('layouts.user.search', ['currentPage'=>'personalDocument'])
                 @include("common.errors")
                 <div class="all-document list-group">
+                    @if($document->count() == 0)
+                        <div class="list-group-item">
+                            <span>Không có văn bản cá nhân nào.</span>
+                        </div>
+                    @endif
                     @foreach($document as $value)
                         @php
                             $id = \App\Models\DocumentUser::where('document_id', $value->documentID)->first();

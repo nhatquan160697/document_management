@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Uploaders;
+use File;
 
 class Uploader
 {
@@ -50,6 +51,21 @@ class Uploader
             $imgFile = $newName;
             $file->move($path, $newName);
             return $newName;
+        }
+    }
+
+    public function checkOldImg($file, $isArray, $path){
+        if(isset($file)){
+            if($isArray == false){
+                File::delete(public_path($path.'/'.$file));
+            }
+            else {
+                $arrayFileDecode = json_decode($file);
+                foreach($arrayFileDecode as $value)
+                {
+                    File::delete(public_path($path.'/'.$value));
+                }
+            }
         }
     }
 }

@@ -34,13 +34,8 @@
                             {!! Form::close() !!}
                         </div>
                         <div class="right-profile" id="ajaxform">
-                            @php
-                                $id = \App\Models\DepartmentUser::where('user_id', Auth::user()->id)->first();
-                                $department = \App\Models\Department::where('id', $id->department_id)->first();
-                                $position = \App\Models\Position::where('id', $id->position_id)->first();
-                            @endphp
                             <h4>{{ Auth::user()->name }}</h4>
-                            <span> {{ $position->name }} - {{ $department->name }}</span>
+                            <span>Chức vụ: Admin Hệ Thống</span>
                             <br/>
                             <br/>
                             <p>
@@ -82,7 +77,7 @@
                     {!! Form::label('oldpassword', "Mật khẩu Cũ ") !!}
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            {!! Form::password('oldpassword', ['class' => 'form-control', 'placeholder' => "Nhập Mật Khẩu", 'id' => 'password', 'required' => 'required', 'pattern' => '(?=.*\d)(?=.*[a-z]).{6,}',  'title' => 'Mật khẩu ít nhất có 6 kí tự bao gồm chữ và số']) !!}
+                            {!! Form::password('oldpassword', ['class' => 'form-control', 'placeholder' => "Nhập Mật Khẩu", 'id' => 'password', 'required' => 'required']) !!}
                         </div>
                     </div>
                     {!! Form::label('newpassword', "Mật khẩu Mới") !!}

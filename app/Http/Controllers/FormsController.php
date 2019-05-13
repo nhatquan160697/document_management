@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DepartmentUser;
 use App\Models\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FormsController extends Controller
 {
     public function index()
     {
-        $form = Form::where('is_active', config('setting.active.is_active'))->get();
+        $idDepartment = DepartmentUser::where('user_id', Auth::user()->id)->first()->department_id;
+        $form = Form::where(['is_active' =>  config('setting.active.is_active'), 'department_id' => $idDepartment])
+            ->where('approved_by', '!=', config('setting.approval.no_approved'))
+            ->get();
 
         return view('forms.index', compact('form'));
     }

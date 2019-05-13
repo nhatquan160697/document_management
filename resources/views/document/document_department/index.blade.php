@@ -10,6 +10,11 @@ Văn bản đến đơn vị
                 <h4 class="h4-first">Văn bản đến đơn vị</h4>
                 @include('layouts.user.search', ['currentPage'=>'documentDepartment'])
                 <div class="all-document list-group">
+                    @if($document->count() == 0)
+                        <div class="list-group-item">
+                            <span>Không có văn bản đến.</span>
+                        </div>
+                    @endif
                     @foreach($document as $value)
                         @php
                             $id = \App\Models\DocumentDepartment::where('document_id', $value->documentID)->first();

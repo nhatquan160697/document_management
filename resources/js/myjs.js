@@ -5,7 +5,7 @@ function submitForm(id) {
     }
 }
 function submitFormDeleteHard(id) {
-    const flag = confirm("Bạn có chắc chắc chắn muốn xóa cứng không? \n Dữ liệu sẽ bị mất vĩnh viễn.");
+    const flag = confirm("Bạn có chắc chắc chắn muốn xóa vĩnh viễn nhân viên này không? \n Dữ liệu sẽ bị mất vĩnh viễn.");
     if (flag === true) {
         document.getElementById(id).submit();
     }

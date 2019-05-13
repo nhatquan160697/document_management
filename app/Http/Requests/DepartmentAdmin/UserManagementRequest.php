@@ -29,7 +29,7 @@ class UserManagementRequest extends FormRequest
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required|numeric',
-            'avatar' => 'mimes:jpeg,png,bmp,gif,svg',
+            'avatar' => 'mimes:jpeg,png,bmp,gif,svg,jpg|max:10000',
         ];
     }
 
@@ -43,7 +43,8 @@ class UserManagementRequest extends FormRequest
             'address.required' => "Vui lòng nhập địa chỉ",
             'phone.required' => "Vui lòng nhập số điện thoại",
             'phone.numeric' => "Số điện thoại chỉ bao gồm số",
-            'avatar.mimes' => "Ảnh đại diện phải là một tệp loại: jpeg, png, bmp, gif, svg.",
+            'avatar.mimes' => "Ảnh đại diện phải là một tệp loại: jpeg, png, bmp, gif, svg, jpg.",
+            'avatar.max' => 'giới hạn upload file là 10 MB',
         ];
     }
 }

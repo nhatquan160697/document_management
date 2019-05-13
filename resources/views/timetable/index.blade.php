@@ -25,6 +25,11 @@
                 </div>
             </div>
             <div class="list-group">
+                @if($timeTable->count() == 0)
+                    <div>
+                        <span>Không có thông tin thời khóa biểu.</span>
+                    </div>
+                @endif
                 <ul class="css-timetable-ul">
                     @foreach($timeTable as $value)
                         <li>

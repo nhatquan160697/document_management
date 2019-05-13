@@ -28,7 +28,7 @@ class UpdateUserManagementRequest extends FormRequest
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required|numeric',
-            'avatar' => 'mimes:jpeg,png,bmp,gif,svg',
+            'avatar' => 'mimes:jpeg,png,bmp,gif,svg,jpg|max:30',
         ];
     }
 
@@ -41,6 +41,7 @@ class UpdateUserManagementRequest extends FormRequest
             'phone.required' => "Vui lòng nhập số điện thoại",
             'phone.numeric' => "Số điện thoại chỉ bao gồm số",
             'avatar.mimes' => "Ảnh đại diện phải là một tệp loại: jpeg, png, bmp, gif, svg.",
+            'avatar.max' => 'giới hạn upload file là 10 MB',
         ];
     }
 }

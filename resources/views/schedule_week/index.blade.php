@@ -30,6 +30,11 @@
                 </div>
             </div>
             <div class="list-group">
+                @if($schedule->count() == 0)
+                    <div>
+                        <span>Không có thông tin lịch tuần trường.</span>
+                    </div>
+                @endif
                 <ul class="css-timetable-ul">
                     @foreach($schedule as $value)
                         <li>

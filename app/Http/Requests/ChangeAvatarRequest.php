@@ -24,14 +24,15 @@ class ChangeAvatarRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => 'mimes:jpeg,png,bmp,gif,svg',
+            'avatar' => 'mimes:jpeg,png,bmp,gif,svg,jpg|max:10000',
         ];
     }
 
     public function messages()
     {
         return [
-            'avatar.mimes' => "Ảnh đại diện phải là một tệp loại: jpeg, png, bmp, gif, svg.",
+            'avatar.mimes' => "Ảnh đại diện phải là một tệp loại: jpeg, png, bmp, gif, svg, jpg.",
+            'avatar.max' => 'giới hạn upload file là 10 MB',
         ];
     }
 }

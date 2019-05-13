@@ -22,15 +22,12 @@ Tin nhắn đến
             </div>
             @endforeach
         @else
-            <div class="alert alert-danger alert-dismissible fade show col col-8 message" role="alert">
+            <div>
                 <strong>
                     <ul>
                         <li>Không có tin nhắn nào</li>
                     </ul>
                 </strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
         @endif
         </div>

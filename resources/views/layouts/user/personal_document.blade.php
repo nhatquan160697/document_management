@@ -114,39 +114,48 @@
                                     $departmentID = \App\Models\DepartmentUser::where([
                                         'user_id' => Auth::user()->id,
                                     ])->first()->department_id;
-                                    $arrDocumentID = \App\Models\Document::join('document_user', 'document_user.document_id', '=', 'documents.id')
-                                        ->where('document_user.department_id', $departmentID)
-                                        ->orWhere('document_user.user_id', Auth::user()->id)
-                                        ->get();
+                                    $listDocumentIsApproved = \App\Models\Document::where('is_approved', config('setting.document.approved'))->get();
+                                    if($listDocumentIsApproved->count() > 0){
+                                        $listIdDocApproved = array();
+                                        foreach($listDocumentIsApproved as $arrID){
+                                              if(isset($arrID->id)){
+                                                array_push($listIdDocApproved, $arrID->id);
+                                              }
+                                        }
+                                        $arrDocumentID = \App\Models\Document::join('document_user', 'document_user.document_id', '=', 'documents.id')
+                                            ->whereIn('document_user.document_id', $listIdDocApproved)
+                                            ->where('document_user.department_id', $departmentID)
+                                            ->orWhere('document_user.user_id', Auth::user()->id)
+                                            ->get();
+                                    }
                                     if($arrDocumentID->count() > 0){
+                                        $listIdDoc = array();
                                         foreach($arrDocumentID as $arrID){
-                                              $listIdDoc = array();
                                               if(isset($arrID->document_id)){
                                                 array_push($listIdDoc, $arrID->document_id);
                                               }
                                         }
-                                        $documentDepartment = \App\Models\DocumentUser::whereIn('document_id', $listIdDoc)->where('department_id', $departmentID)->get();
+                                        $documentUser = \App\Models\DocumentUser::whereIn('document_id', $listIdDoc)->where('department_id', $departmentID)->get();
                                         $countPersonalUnSeenDocumentsQuantity = 0;
-                                        foreach($documentDepartment as $value){
+                                        foreach($documentUser as $value){
+                                            $checkUser = 0;
                                             if(isset($value->array_user_seen) && $value->array_user_seen != ""){
-                                                $check = false;
                                                 $arrayUserSeenDecode = json_decode($value->array_user_seen);
                                                 foreach($arrayUserSeenDecode as $ar){
                                                     if(Auth::user()->id == $ar){
-                                                        $check = false;
+                                                        $checkUser = 0;
                                                     }
                                                     else {
-                                                        $check = true;
+                                                        $checkUser = 1;
                                                     }
                                                 }
-                                                if($check == true){
+                                                if($checkUser == true){
                                                     $countPersonalUnSeenDocumentsQuantity = $countPersonalUnSeenDocumentsQuantity + 1;
                                                 }
                                             }
-                                            else {
-                                               $countPersonalUnSeenDocumentsQuantity = $documentDepartment->count();
-                                            }
                                         }
+
+
                                     }
                                     else {
                                         $countPersonalUnSeenDocumentsQuantity = 0;

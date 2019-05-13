@@ -86,9 +86,9 @@ class Information extends Controller
     public function changeAvatar(ChangeAvatarRequest $request){
         $input = $request->avatar;
         $input = $this->uploader->saveImg($input);
-
-
         try {
+            $dataOfUser = User::where('id', Auth::user()->id)->first()->avatar;
+            $this->uploader->checkOldImg($dataOfUser,false,'/upload/images');
             User::where('id', Auth::user()->id)->update(['avatar' => $input]);
             if (Auth::user()->role == config('setting.roles.system_admin')) {
                 return redirect()->route('profile.index-admin')

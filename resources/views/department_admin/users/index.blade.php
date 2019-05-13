@@ -16,9 +16,9 @@
                 <tr>
                     <th width="20%">Tên đầy đủ</th>
                     <th width="20%">Email</th>
-                    <th width="10%">Phone</th>
-                    <th width="20%">Địa Chỉ</th>
-                    <th width="5%">Trạng thái</th>
+                    <th width="20%">Địa chỉ</th>
+                    <th width="10%">Điện thoại</th>
+                    <th width="10%">Chức vụ</th>
                     <th width="10%">Hành động</th>
                 </tr>
                 </thead>
@@ -27,22 +27,18 @@
                     <tr>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->phone }}</td>
                         <td>{{ $value->address }}</td>
-                        <td class="frm-align">
-                            @if($value->is_active != 0)
-                                <span class="badge badge-success" style="background-color: #28a745">Khả dụng</span>
-                            @else
-                                <span class="badge badge-pill badge-warning" style="background-color: #dc3545">Không khả dụng</span>
-                            @endif
-                        </td>
+                        <td>{{ $value->phone }}</td>
+                        <td>{{ $value->position_name }}</td>
                         <td class="frm-align">
                             <a href="{{ route('users.show',$value->user_id) }}" class="text-warning" style="margin-right: 8px;">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="javascript:void(0)" class="text-danger data-delete frm-margin-left-8"  onclick='submitForm("delete-department" + {{$value->user_id}});'><i class="fa fa-trash"></i></a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy',$value->user_id], 'id'=>'delete-department'.$value->user_id]) !!}
-                            {!! Form::close() !!}
+                            @if($value->position_id != config('setting.position.admin_department'))
+                                <a href="javascript:void(0)" class="text-danger data-delete frm-margin-left-8"  onclick='submitForm("delete-department" + {{$value->user_id}});'><i class="fa fa-trash"></i></a>
+                                {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy',$value->user_id], 'id'=>'delete-department'.$value->user_id]) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </td>
                     </tr>
                 @endforeach

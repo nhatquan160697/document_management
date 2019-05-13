@@ -16,8 +16,8 @@ class CreateInfrastructureTable extends Migration
         Schema::create('infrastructure', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('picture')->default("default.png");
-            $table->integer('department_id')->default(4);
+            $table->string('picture')->default("user-default.png");
+            $table->integer('department_id');
             $table->integer('amount');
             $table->integer('is_active')->default(1);
             $table->timestamps();

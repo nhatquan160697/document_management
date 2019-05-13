@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\DepartmentAdmin;
 
-use App\Http\Requests\SystemAdmin\InfrastructureRequest;
+use App\Http\Requests\DepartmentAdmin\InfrastructureRequest;
 use App\Models\Department;
 use App\Models\DepartmentUser;
 use App\Models\Infrastructure;
@@ -130,6 +130,7 @@ class InfrastructureManagementController extends Controller
                 $updateInfrastructure->update(['name' => $input['name'], 'department_id' => $deparmentId, 'amount' => $input['amount']]);
             }
             else {
+                $this->uploader->checkOldImg($updateInfrastructure->picture, false,'/upload/images');
                 $input['picture'] = $this->uploader->saveImg($input['picture']);
                 $input['department_id'] = $deparmentId;
                 $updateInfrastructure->update($input);

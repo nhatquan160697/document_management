@@ -27,7 +27,10 @@ class FormManagementController extends Controller
 
     public function index()
     {
-        $forms = Form::where('is_active', config('setting.active.is_active'))->where('approved_by', '!=', config('setting.approval.no_approved'))->get();
+  		$idDepartment = DepartmentUser::where('user_id', Auth::user()->id)->first()->department_id;
+        $forms = Form::where('is_active', config('setting.active.is_active'))->where('approved_by', '!=', config('setting.approval.no_approved'))
+        ->where('department_id', $idDepartment)
+        ->get();
 
         return view('department_admin.forms.index', compact( 'forms'));
     }
@@ -147,7 +150,8 @@ class FormManagementController extends Controller
     }
 
     public function archiveIndex(){
-        $forms = Form::where('is_active',config('setting.active.no_active'))->get();
+    	$idDepartment = DepartmentUser::where('user_id', Auth::user()->id)->first()->department_id;
+        $forms = Form::where(['is_active' => config('setting.active.no_active'), 'department_id' => $idDepartment ])->get();
 
         return view('department_admin.forms.archive', compact( 'forms'));
     }
@@ -206,7 +210,7 @@ class FormManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormManagementRequest $request, $id)
     {
         $input = $request->all();
         DB::beginTransaction();
@@ -217,6 +221,8 @@ class FormManagementController extends Controller
             }
             else {
                 $path = 'upload/files/form';
+                $dataOfForm = Form::find($id)->link;
+                $this->uploader->checkOldImg($dataOfForm, true, $path);
                 $arrFiles = $this->uploader->saveFileAttach($input['link'],$path);
                 $input['link'] = json_encode($arrFiles);
                 Form::find($id)->update($input);

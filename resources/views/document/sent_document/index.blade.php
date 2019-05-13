@@ -10,6 +10,11 @@ Văn bản đi
                 <h4 class="h4-first">Văn bản đã gửi</h4>
                 @include('layouts.user.search', ['currentPage'=>'sendDocument'])
                 <div class="all-document list-group">
+                    @if($documents->count() == 0)
+                        <div class="list-group-item">
+                            <span>Không có văn bản gửi đi.</span>
+                        </div>
+                    @endif
                     @foreach($documents as $document)
                         <div class="list-group-item" onclick="showDocumentSent('{{$document->id}}')">
                         <a href="{{ route('document-sent.show', $document->id) }}" title="{{$document->content}}" >

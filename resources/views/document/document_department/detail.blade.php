@@ -54,7 +54,11 @@
                         <div style="border: 3px solid #e5e7e9;max-width: 800px;margin-bottom: 10px;">
                             <div class="detail-head">
                                 <div style="margin: 10px;">
-                                    <img src="/upload/images/{{$value->avatar}}" style="width: 35px;height: 35px;border-radius: 2em;">&nbsp;
+                                    @if($document->avatar == 'user-default.png')
+                                        <img src="/templates/user/images/{{$document->avatar}}" style="width: 35px;height: 35px;border-radius: 2em;">&nbsp;
+                                    @else
+                                        <img src="/upload/images/{{$document->avatar}}" style="width: 35px;height: 35px;border-radius: 2em;">&nbsp;
+                                    @endif
                                     <span style="color: black;font-weight: bold">{{ $value->name }}</span>
                                     <div style="float: right"><span title="{{ date('H:m:i ( d-m-Y )', strtotime($value->created_at)) }}">
                                             {{Carbon\Carbon::createFromTimeStamp(strtotime($value->created_at))->diffForHumans()}}</span>&nbsp;

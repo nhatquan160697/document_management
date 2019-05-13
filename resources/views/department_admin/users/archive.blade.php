@@ -36,16 +36,17 @@
                                     <span class="badge badge-pill badge-warning" style="background-color: #dc3545">Không khả dụng</span>
                                 @endif
                             </td>
-                            <td>
-                                {!!Form::open(["method" => "PUT", "route" => ["users.archive.restore", $key->id ], "id" => "restoreArchive".$key->id])!!}
-                                <a href="javascript:void(0)" class="text-success data-delete frm-margin-left-8" onclick="restoreArchivedData('restoreArchive'+{{$key->id}})" title="Khôi phục">
+                            <td class="frm-align">
+
+                                <a href="javascript:void(0)" class="text-success" onclick="restoreArchivedData('restoreArchive'+{{$key->user_id}})" title="Khôi phục">
                                     <i class="fa fa-trash-restore-alt"></i>
                                 </a>
-                                {!!Form::close()!!}
-                                {!! Form::open(['method' => 'POST', 'route' => ['users.delete',$key->id], 'id'=>'delete hard'.$key->id]) !!}
-                                <a href="javascript:void(0)" class="text-danger data-delete frm-margin-left-8"  onclick='submitFormDeleteHard("delete hard" + {{$key->id}});' title="Xóa vĩnh viễn">
+                                <a href="javascript:void(0)" class="text-danger data-delete frm-margin-left-8"  onclick='submitFormDeleteHard("delete-hard" + {{$key->user_id}});' title="Xóa vĩnh viễn">
                                     <i class="fa fa-trash"></i>
                                 </a>
+                                {!!Form::open(["method" => "PUT", "route" => ["users.archive.restore", $key->user_id ], "id" => "restoreArchive".$key->user_id])!!}
+                                {!!Form::close()!!}
+                                {!! Form::open(['method' => 'POST', 'route' => ['users.delete',$key->user_id], 'id'=>'delete-hard'.$key->user_id]) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
