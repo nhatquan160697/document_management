@@ -77,10 +77,9 @@ class PersonalDocumentController extends Controller
                 )
                 ->orderBy('document_user.created_at', 'desc')
                 ->paginate(5);
-
         }
 
-        return view("document.personal_document.index", compact('document'));
+        return view("document.personal_document.index", compact('document', 'documentUser'));
     }
 
     public function create()

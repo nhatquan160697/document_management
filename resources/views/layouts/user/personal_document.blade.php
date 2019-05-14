@@ -114,6 +114,7 @@
                                     ])->first()->department_id;
                                     $documentUser = \App\Models\DocumentUser::where('department_id', $departmentID)->get();
                                     $arrayDocumentId = array();
+                                    $countPersonalUnSeenDocumentsQuantity = 0;
                                     if($documentUser->count()>0){
                                         foreach($documentUser as $value){
                                             if(isset($value->array_user_id)){
@@ -130,7 +131,6 @@
                                         ->whereIn('document_id', $arrayDocumentId)
                                         ->where('documents.is_approved', config('setting.document.approved'))
                                         ->get();
-                                        $countPersonalUnSeenDocumentsQuantity = 0;
                                         if($getDocumentPerson->count()>0){
                                             $check = true;
                                             foreach($getDocumentPerson as $value){
