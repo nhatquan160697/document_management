@@ -18,20 +18,20 @@
                             {!! Form::label('name', "Tên Thành Viên") !!}
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {!! Form::text('name', '', ['maxlength' => "20", 'class' => 'form-control', 'placeholder' => "Nhập  Tên Thành Viên", 'id' => 'name', 'required' => 'required', 'pattern' => config('setting.patter_fullname'),  'title' => 'Họ tên chỉ bao gồm chữ cái và phải tối thiểu 6 kí tự']) !!}
+                                    {!! Form::text('name', old('name'), ['maxlength' => "20", 'class' => 'form-control', 'placeholder' => "Nhập  Tên Thành Viên", 'id' => 'name', 'required' => 'required', 'pattern' => config('setting.patter_fullname'),  'title' => 'Họ tên chỉ bao gồm chữ cái và phải tối thiểu 6 kí tự']) !!}
                                 </div>
                             </div>
                             {!! Form::label('name', "Tên Đăng Nhập") !!}
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {!! Form::text('usernameF', '', ['id' => 'usernameF', 'class' => 'form-control', 'disabled' => true]) !!}
-                                    {!! Form::text('username', '', ['id' => 'username', 'class' => 'form-control', 'hidden' => true]) !!}
+                                    {!! Form::text('usernameF', old('username'), ['id' => 'usernameF', 'class' => 'form-control', 'disabled' => true]) !!}
+                                    {!! Form::text('username', old('username'), ['id' => 'username', 'class' => 'form-control', 'hidden' => true]) !!}
                                 </div>
                             </div>
                             {!! Form::label('email', "Email") !!}
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {!! Form::text('email', '', ['class' => 'form-control', 'placeholder' => "Nhập Email", 'id' => 'email', 'required' => 'required', 'pattern' => config('setting.patter_email'),  'title' => 'Phía trước dấu @ phải có ít nhất một kí tự và phía sau dấu @ là tối đa 2 đuôi tên miền.', 'maxlenght' => 15]) !!}
+                                    {!! Form::text('email', old('email'), ['class' => 'form-control', 'placeholder' => "Nhập Email", 'id' => 'email', 'required' => 'required', 'pattern' => config('setting.patter_email'),  'title' => 'Phía trước dấu @ phải có ít nhất một kí tự và phía sau dấu @ là tối đa 2 đuôi tên miền.', 'maxlenght' => 15]) !!}
                                 </div>
                             </div>
                             {!! Form::label('password', "Mật Khẩu") !!}
@@ -42,7 +42,7 @@
                             </div>
                             {!! Form::label('birth_date', "Ngày Sinh") !!}
                             <div class="input-group date birthday">
-                                {!! Form::text('birth_date', '', ['data-date-format'=>'dd/mm/yyyy','readonly', 'class'=>'form-control', 'style'=>'background:#fff']) !!}
+                                {!! Form::text('birth_date', old('birth_date'), ['data-date-format'=>'dd/mm/yyyy','readonly', 'class'=>'form-control', 'style'=>'background:#fff']) !!}
                             </div>
                             {!! Form::label('gender', "Giới Tính") !!}
                             <div class="form-group row">
@@ -60,7 +60,7 @@
                             {!! Form::label('address', "Địa Chỉ") !!}
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    {!! Form::text('address', '', ['class' => 'form-control', 'placeholder' => "Nhập Địa Chỉ", 'id' => 'address', 'required' => 'required', 'pattern' => config('setting.patter_address'),  'title' => 'địa chỉ bao gồm chữ và số']) !!}
+                                    {!! Form::text('address', old('address'), ['class' => 'form-control', 'placeholder' => "Nhập Địa Chỉ", 'id' => 'address', 'required' => 'required', 'pattern' => config('setting.patter_address'),  'title' => 'địa chỉ bao gồm chữ và số']) !!}
                                 </div>
                             </div>
                             {!! Form::label('phone', "Số Điện Thoại") !!}

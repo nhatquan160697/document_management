@@ -47,6 +47,14 @@
                                 <a href="{{ route('department-user.edit', $depUser->department_user_id) }}" class="text-warning frm-margin-right-8">
                                     <i class="fa fa-edit"></i>
                                 </a>
+                                <a href="{{ route('department-user.show', $depUser->department_user_id) }}" class="text-warning frm-margin-right-8">
+                                    <i class="fas fa-user-edit"></i>
+                                </a>
+                                {!!Form::open(['method'=>'DELETE', 'id'=>'delete-User'.$depUser->department_user_id, 'route'=>['department-user.destroy', $depUser->department_user_id], 'style'=>'display:inline'])!!}
+                                <a href="javascript:void(0)" class="text-danger data-delete frm-margin-left-8" onclick='submitForm("delete-User" + {{$depUser->department_user_id}});'>
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                {!!Form::close()!!}
                             </td>
                         </tr>
                         @endforeach

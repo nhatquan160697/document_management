@@ -58,13 +58,26 @@ $(document).ready(function() {
     $('#no_end_date').click(function() {
         if (!$(this).is(':checked')) {
             document.getElementById("end_date_div").style.display = "inherit";
-            document.getElementById("end_date").disabled = false;
+            // document.getElementById("end_date").disabled = false;
             $('#no_end_date').val(0);
         }
         else{
             document.getElementById("end_date_div").style.display = "none";
-            document.getElementById("end_date").disabled = true;
+            // document.getElementById("end_date").disabled = true;
             $('#no_end_date').val(1);
+        }
+    });
+
+    $('#checkPass').click(function() {
+        if (!$(this).is(':checked')) {
+            document.getElementById("change_pass_div").style.display = "inherit";
+            // document.getElementById("password").disabled = false;
+            $('#checkPass').val(0);
+        }
+        else{
+            document.getElementById("change_pass_div").style.display = "none";
+            // document.getElementById("checkPass").disabled = true;
+            $('#checkPass').val(1);
         }
     });
 });

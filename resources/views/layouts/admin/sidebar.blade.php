@@ -58,9 +58,17 @@
 
     <!-- Nav Item - Department User -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('department-user.index') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#nhansu" aria-expanded="true" aria-controls="nhansu">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Nhân sự - phòng ban</span></a>
+            <span>Nhân sự - phòng ban</span>
+        </a>
+        <div id="nhansu" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('department-user.create') }}">Tạo mới nhân sự</a>
+                <a class="collapse-item" href="{{ route('department-user.index') }}">Danh sách nhân sự</a>
+                <a class="collapse-item" href="{{ route('department-user.trash') }}">nhân sự đã bị xóa</a>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->

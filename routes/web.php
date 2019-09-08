@@ -109,7 +109,18 @@ Route::group(['middleware' => 'checkSysAdmin'], function () {
 
             //department user
             Route::resource('department-user', 'DepartmentUserController');
-
+            Route::patch('department-user/update_user/edit/{id}', [
+                'as' => 'department-user.update.user',
+                'uses' => 'DepartmentUserController@updateUser'
+            ]);
+            Route::get('department-user/user/user-deleted', [
+                'as' => 'department-user.trash',
+                'uses' => 'DepartmentUserController@trash'
+            ]);
+            Route::patch('department-user/user/user-restore/{id}', [
+                'as' => 'department-user.restore',
+                'uses' => 'DepartmentUserController@restore'
+            ]);
             //document-type
             Route::resource('document-type', 'DocumentTypeController');
 
@@ -302,7 +313,7 @@ Route::group(['middleware' => 'checkIsNotSysAdmin'], function () {
         Route::resource('list-users', 'MemberController');
         // chỉ xem danh sách đơn vị liên kết của đơn vị
         Route::resource('collaboration', 'CollaborationController');
-        
+
         Route::namespace ('Document')->group(function () {
             //user
             Route::resource('document-personal', 'PersonalDocumentController', [
